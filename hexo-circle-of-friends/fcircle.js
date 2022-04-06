@@ -1,30 +1,30 @@
 
 // ======================================================
 
-// 打印友链基本信息
+// 打印友鏈基本信息
 function loadStatistical(sdata){
-    // 友链页面的挂载容器
+    // 友鏈頁面的掛載容器
     var container = document.getElementById('fcircleContainer');
-    // 基本信息的html结构
+    // 基本信息的html結構
     
     var messageBoard =`
     <div id="fMessageBoard">
       <div class="fUpdatedTime">
-        <span class="fLabel">最近更新时间：</span><span class="fMessage">${sdata.last_updated_time}</span>
+        <span class="fLabel">最近更新時間：</span><span class="fMessage">${sdata.last_updated_time}</span>
       </div>
       <div class="fMessageItem">
         <div class="fActiveFriend fItem">
-          <span class="fLabel">活跃友链数</span>
+          <span class="fLabel">活躍友鏈數</span>
           <span class="fMeasureBar"><span class="fMeasure" style="width:${(sdata.active_num/sdata.friends_num * 100).toFixed(2)}%; background: rgba(89, 230, 54,0.6);">${(sdata.active_num/sdata.friends_num * 100).toFixed(2)}%</span></span>
           <span class="fMessage">${sdata.active_num}/${sdata.friends_num}</span>
         </div>
         <div class="fErrorSite fItem">
-          <span class="fLabel">失联友链数</span>
+          <span class="fLabel">失聯友鏈數</span>
           <span class="fMeasureBar"><span class="fMeasure" style="width:${(sdata.error_num/sdata.friends_num * 100).toFixed(2)}%; background: rgba(227, 23, 72, 0.6);">${(sdata.error_num/sdata.friends_num * 100).toFixed(2)}%</span></span>
           <span class="fMessage">${sdata.error_num}/${sdata.friends_num}</span>
         </div>
         <div class="fArticleNum fItem">
-          <span class="fLabel">当前库存</span>
+          <span class="fLabel">當前庫存</span>
           <span class="fMeasureBar"><span class="fMeasure" style="width:${(sdata.article_num/Math.ceil(sdata.article_num / 100)).toFixed(2)}%; background: rgba(29, 217, 211, 0.6);">${(sdata.article_num/Math.ceil(sdata.article_num / 100)).toFixed(2)}%</span></span>
           <span class="fMessage">${sdata.article_num}/${Math.ceil(Number( sdata.article_num) / 100) * 100}</span>
         </div>
@@ -38,27 +38,27 @@ function loadStatistical(sdata){
       </div>
     </div>
     `;
-    // 加载更多按钮
+    // 加載更多按鈕
     var loadMoreBtn = `
     <div id="fcircleMoreBtn" onclick="loadMoreArticle()">
       <i class="fas fa-angle-double-down"></i>
     </div>
     `
-    // 原则上信息面板应该在最前面，所以用beforebegin表示从开始符前面插入
+    // 原則上信息面板應該在最前面，所以用beforebegin表示從開始符前面插入
     if(container){
       container.insertAdjacentHTML('beforebegin', messageBoard);
-      // 为了不影响文章加载，选择afterend表示从结束符后面插入
+      // 為了不影響文章加載，選擇afterend表示從結束符後面插入
       container.insertAdjacentHTML('afterend', loadMoreBtn);
       }
     }
     
     // ======================================================
-    // 打印友链内容
+    // 打印友鏈內容
     function loadArticleItem(datalist,start,end){
     var fdatalist = JSON.parse(localStorage.getItem("fdatalist"));
-    // 声明友链页面的挂载容器
+    // 聲明友鏈頁面的掛載容器
     var container = document.getElementById('fcircleContainer');
-    // 循环读取输出友链信息
+    // 循環讀取輸出友鏈信息
     for (var i = start;i<end;i++){
     var item = datalist[i];
     var articleItem=`
@@ -76,14 +76,14 @@ function loadStatistical(sdata){
             ${item.title}
           </a>
           <div class="fArticleTime">
-            <span class="fArticleCreated"><i class="far fa-calendar-alt">发表于</i>${item.created}</span>
-            <span class="fArticleUpdated"><i class="fas fa-history">更新于</i>${item.updated}</span>
+            <span class="fArticleCreated"><i class="far fa-calendar-alt">發表於</i>${item.created}</span>
+            <span class="fArticleUpdated"><i class="fas fa-history">更新於</i>${item.updated}</span>
           </div>
         </div>
       </div>
     `;
     if(container){
-    // 为了便于和后续拼接，选择从容器尾部插入
+    // 為了便於和後續拼接，選擇從容器尾部插入
     container.insertAdjacentHTML('beforeend', articleItem);
         }
       }
@@ -92,80 +92,80 @@ function loadStatistical(sdata){
     
     // 初始化方法
     function initFriendCircle(){
-      // 获取友链挂载容器
+      // 獲取友鏈掛載容器
       var fcircleContainer = document.getElementById('fcircleContainer')
-      // 获取本地存储的友链基本信息
+      // 獲取本地存儲的友鏈基本信息
       var statistical_data = JSON.parse(localStorage.getItem("statisticalList"));
-      // 从本地内存读取配置信息
+      // 從本地內存讀取配置信息
       var fdatalist = JSON.parse(localStorage.getItem("fdatalist"));
-      // 只有当容器、基本信息均存在时才执行初始化
+      // 只有當容器、基本信息均存在時才執行初始化
       if (fcircleContainer && statistical_data && fdatalist){
-        // 加载基本信息面板
+        // 加載基本信息面板
         loadStatistical(statistical_data);
-        // 获取切换排序按钮
+        // 獲取切換排序按鈕
         var switchRankMode = document.getElementById("switchRankMode");
-        //根据当前选择的排序方案加载对应的排序内容
+        //根據當前選擇的排序方案加載對應的排序內容
         if(switchRankMode.checked){
-          // console.log("按更新时间排序");
+          // console.log("按更新時間排序");
           var article_sortupdated = JSON.parse(localStorage.getItem("updatedList"));
           loadArticleItem(article_sortupdated ,0,fdatalist.initnumber)
         }else{
-          // console.log("按创建时间排序");
+          // console.log("按創建時間排序");
           var article_sortcreated = JSON.parse(localStorage.getItem("createdList"));
           loadArticleItem(article_sortcreated ,0,fdatalist.initnumber)
         }
       }
     }
     
-    // 加载更多文章
+    // 加載更多文章
     function loadMoreArticle(){
-      // 获取当前已加载的文章数
+      // 獲取當前已加載的文章數
       var currentArticle = document.getElementsByClassName('fArticleItem').length;
-      // 获取当前选择的排序方式
+      // 獲取當前選擇的排序方式
       var switchRankMode = document.getElementById("switchRankMode");
-      // 从本地内存读取配置信息
+      // 從本地內存讀取配置信息
       var fdatalist = JSON.parse(localStorage.getItem("fdatalist"));
-      // 只有当两者均存在时才继续执行
+      // 只有當兩者均存在時才繼續執行
       if (switchRankMode && fdatalist){
         if(switchRankMode.checked){
-          // console.log("按更新时间排序");
+          // console.log("按更新時間排序");
           var article_sortupdated = JSON.parse(localStorage.getItem("updatedList"));
-          // 从当前文章的下一篇开始，加载下一阶程篇数
+          // 從當前文章的下一篇開始，加載下一階程篇數
           loadArticleItem(article_sortupdated,currentArticle,currentArticle + fdatalist.stepnumber)
         }else{
-          // console.log("按创建时间排序");
+          // console.log("按創建時間排序");
           var article_sortcreated = JSON.parse(localStorage.getItem("createdList"));
-          // 从当前文章的下一篇开始，加载下一阶程篇数
+          // 從當前文章的下一篇開始，加載下一階程篇數
           loadArticleItem(article_sortcreated,currentArticle,currentArticle + fdatalist.stepnumber)
         }
       }
-      // 向上滚动一篇文章的距离
+      // 向上滾動一篇文章的距離
       window.scrollBy(0,180)
     }
     
-    //切换按钮
+    //切換按鈕
     function checkRankMode(){
-      // 首先清空现有的文章内容
+      // 首先清空現有的文章內容
       document.getElementById('fcircleContainer').innerHTML=''
-      // 获取当前选择的排序方式
+      // 獲取當前選擇的排序方式
       var switchRankMode = document.getElementById("switchRankMode");
-      // 从本地内存读取配置信息
+      // 從本地內存讀取配置信息
       var fdatalist = JSON.parse(localStorage.getItem("fdatalist"));
-      // 只有当两者均存在时才继续执行
+      // 只有當兩者均存在時才繼續執行
       if (switchRankMode && fdatalist){
-        //按更新时间排序
+        //按更新時間排序
         if(switchRankMode.checked){
-          // console.log("按更新时间排序");
+          // console.log("按更新時間排序");
           var article_sortupdated = JSON.parse(localStorage.getItem("updatedList"));
-          //加载配置项中指定的初始化篇数
+          //加載配置項中指定的初始化篇數
           loadArticleItem(article_sortupdated ,0,fdatalist.initnumber)
         }else{
-          // console.log("按创建时间排序");
+          // console.log("按創建時間排序");
           var article_sortcreated = JSON.parse(localStorage.getItem("createdList"));
-          //加载配置项中指定的初始化篇数
+          //加載配置項中指定的初始化篇數
           loadArticleItem(article_sortcreated ,0,fdatalist.initnumber)
         }
       }
     }
-    //执行初始化方法
+    //執行初始化方法
     initFriendCircle()

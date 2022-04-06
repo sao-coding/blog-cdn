@@ -239,7 +239,7 @@ function GitCalendarInit(git_gitapiurl, git_color, git_user) {
                 html += `<div class="gitmessage" style="top:${y}px;left: ${x}px;position: fixed;z-index:9999">
                             <div class="angle-wrapper" style="display:block;">
                               <span>${span1}&nbsp;</span>
-                              <span>${span2}次上传</span>
+                              <span>${span2}次上傳</span>
                             </div>
                           </div>`;
                 return html
@@ -255,7 +255,7 @@ function GitCalendarInit(git_gitapiurl, git_color, git_user) {
                 var html = '';
                 html += `<div id="git_tooltip_container"></div>
                           <div class="contrib-footer clearfix mt-1 mx-3 px-3 pb-1">
-                            <div class="float-left text-gray">数据来源
+                            <div class="float-left text-gray">數據來源
                               <a href="https://github.com/${user}" target="blank">@${user}</a>
                             </div>
                             <div class="contrib-legend text-gray">Less
@@ -285,7 +285,7 @@ function GitCalendarInit(git_gitapiurl, git_color, git_user) {
 
                 html += `<div style="display:flex;width:100%">
                             <div class="contrib-column contrib-column-first table-column">
-                              <span class="text-muted">过去一年提交</span>
+                              <span class="text-muted">過去一年提交</span>
                               <span class="contrib-number">${total}</span>
                               <span class="text-muted">${oneyearbeforeday}&nbsp;-&nbsp;${thisday}</span>
                             </div>
@@ -295,7 +295,7 @@ function GitCalendarInit(git_gitapiurl, git_color, git_user) {
                               <span class="text-muted">${amonthago}&nbsp;-&nbsp;${thisday}</span>
                             </div>
                             <div class="contrib-column table-column">
-                              <span class="text-muted">最近一周提交</span>
+                              <span class="text-muted">最近一週提交</span>
                               <span class="contrib-number">${weekdatacore}</span>
                               <span class="text-muted">${aweekago}&nbsp;-&nbsp;${thisday}</span>
                             </div>
