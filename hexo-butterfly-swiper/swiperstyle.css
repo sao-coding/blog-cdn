@@ -324,7 +324,7 @@ div#swiper_container {
 }
 
 .blog-slider__pagination.swiper-pagination-bullets .swiper-pagination-bullet {
-    margin: 8px 0
+    margin: 8px 0 !important
 }
 
 .blog-slider__pagination .swiper-pagination-bullet {
