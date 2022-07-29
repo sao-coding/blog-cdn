@@ -380,7 +380,7 @@ div#swiper_container {
     }
 
     .blog-slider__pagination.swiper-pagination-bullets .swiper-pagination-bullet {
-        margin: 0 5px
+        margin: 0 5px !important;
     }
 
     .blog-slider__pagination .swiper-pagination-bullet-active {
